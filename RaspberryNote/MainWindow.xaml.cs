@@ -24,5 +24,12 @@ namespace RaspberryNote
         {
             InitializeComponent();
         }
+        private void NavButton_Click(object sender, RoutedEventArgs e)
+        { }
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        { }
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        { }
+      
     }
 }
