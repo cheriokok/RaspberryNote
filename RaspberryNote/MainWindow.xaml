@@ -40,28 +40,28 @@
 
             <Button x:Name="NavButton1" Grid.Column="0" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical" >
-                    <Image Source="/Images/folders.png" Width="60" Height="60"/>
+                    <Image Source="/Images/folders.png" Width="70" Height="70"/>
                     <TextBlock Text="Страница 1" FontSize="14" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
             <Button x:Name="NavButton2" Grid.Column="1" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/folders.png" Width="60" Height="60"/>
+                    <Image Source="/Images/filter.png" Width="60" Height="60"/>
                     <TextBlock Text="Страница 2" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
             <Button x:Name="NavButton3" Grid.Column="2" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/folders.png" Width="60" Height="60"/>
+                    <Image Source="/Images/folders.png" Width="70" Height="70"/>
                     <TextBlock Text="Страница 3" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
             <Button x:Name="NavButton4" Grid.Column="3" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/folders.png" Width="60" Height="60"/>
+                    <Image Source="/Images/folders.png" Width="70" Height="70"/>
                     <TextBlock Text="Страница 4" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>

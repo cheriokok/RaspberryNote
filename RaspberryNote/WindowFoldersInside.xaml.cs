@@ -10,29 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace RaspberryNote
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для WindowFoldersInside.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowFoldersInside : Window
     {
-        public MainWindow()
+        public WindowFoldersInside()
         {
             InitializeComponent();
+            LoadPage($"PageFolder1.xaml");
         }
-        private void NavButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadPage($"PageFolders.xaml");
-
-        }
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        { }
-        private void InfoButton_Click(object sender, RoutedEventArgs e)
-        { }
         private void LoadPage(string pageName)
         {
             try
@@ -44,6 +35,5 @@ namespace RaspberryNote
                 MessageBox.Show($"Ошибка загрузки страницы: {ex.Message}");
             }
         }
-
     }
 }

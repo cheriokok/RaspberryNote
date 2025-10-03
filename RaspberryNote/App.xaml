@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:RaspberryNote"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Cursor x:Key="GlobalCursor">Resources.resx/starcursor.cur</Cursor>
     </Application.Resources>
 </Application>
