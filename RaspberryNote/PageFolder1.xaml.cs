@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,50 @@ namespace RaspberryNote
     /// </summary>
     public partial class PageFolder1 : Page
     {
+        private const string connectionString = "data source=HONOR_RINAOUKO\\MSSQLSERVER01;initial catalog=RaspberryNote;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
+        private Frame mainFrame;
         public PageFolder1()
         {
             InitializeComponent();
+            LoadFolder();
+        }
+    
+     private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+            Window mainWindow = new MainWindow();
+            mainWindow.Show();
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
+
+        }
+        private void LoadFolder()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT 
+                    NoteDescription,
+                    NoteState,
+                    NoteFinishDate, 
+                    NoteCategory
+                    FROM TasksFolder1";
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGrid.ItemsSource = dataTable.DefaultView;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

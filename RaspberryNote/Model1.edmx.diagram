@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc795ac1f8ea4126a6f8c9abf5ad2400" Name="Diagram1">
+        <EntityTypeShape EntityType="RaspberryNoteModel.Categories" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Friday" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Monday" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Saturday" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Sunday" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.TasksFolder1" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.TasksFolder2" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.TasksFolder3" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Thursday" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Tuesday" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaspberryNoteModel.Wednesday" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Friday__DNoteCat__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Monday__DNoteCat__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Saturday__DNoteC__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Sunday__DNoteCat__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__TasksFold__NoteC__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__TasksFold__NoteC__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__TasksFold__NoteC__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Thursday__DNoteC__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Tuesday__DNoteCa__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="RaspberryNoteModel.FK__Wednesday__DNote__628FA481" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -29,7 +29,8 @@ namespace RaspberryNote
             Window foldersInside;
             foldersInside = new WindowFoldersInside();
             foldersInside.Show();
-            Application.Current.MainWindow.Close();
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow.Close();
 
         }
     }

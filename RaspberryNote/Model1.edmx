@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RaspberryNoteModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Friday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Monday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Saturday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sunday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TasksFolder1">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoteDateCreated" Type="date" />
+          <Property Name="NoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="NoteState" Type="varchar" MaxLength="20" />
+          <Property Name="NoteFinishDate" Type="date" />
+          <Property Name="NoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TasksFolder2">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoteDateCreated" Type="date" />
+          <Property Name="NoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="NoteState" Type="varchar" MaxLength="20" />
+          <Property Name="NoteFinishDate" Type="date" />
+          <Property Name="NoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TasksFolder3">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoteDateCreated" Type="date" />
+          <Property Name="NoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="NoteState" Type="varchar" MaxLength="20" />
+          <Property Name="NoteFinishDate" Type="date" />
+          <Property Name="NoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Thursday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tuesday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Wednesday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNoteDescription" Type="varchar" MaxLength="250" />
+          <Property Name="DNoteCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Friday__DNoteCat__68487DD7">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Friday" Type="Self.Friday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Friday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monday__DNoteCat__5CD6CB2B">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Monday" Type="Self.Monday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Monday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Saturday__DNoteC__6B24EA82">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Saturday" Type="Self.Saturday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Saturday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sunday__DNoteCat__6EF57B66">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Sunday" Type="Self.Sunday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Sunday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__3A81B327">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder1" Type="Self.TasksFolder1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder1">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__3E52440B">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder2" Type="Self.TasksFolder2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder2">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__4222D4EF">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder3" Type="Self.TasksFolder3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder3">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Thursday__DNoteC__656C112C">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Thursday" Type="Self.Thursday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Thursday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tuesday__DNoteCa__5FB337D6">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Tuesday" Type="Self.Tuesday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Tuesday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wednesday__DNote__628FA481">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Wednesday" Type="Self.Wednesday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Wednesday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RaspberryNoteModelContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Friday" EntityType="Self.Friday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monday" EntityType="Self.Monday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saturday" EntityType="Self.Saturday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sunday" EntityType="Self.Sunday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksFolder1" EntityType="Self.TasksFolder1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksFolder2" EntityType="Self.TasksFolder2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksFolder3" EntityType="Self.TasksFolder3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thursday" EntityType="Self.Thursday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tuesday" EntityType="Self.Tuesday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wednesday" EntityType="Self.Wednesday" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Friday__DNoteCat__68487DD7" Association="Self.FK__Friday__DNoteCat__68487DD7">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Friday" EntitySet="Friday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monday__DNoteCat__5CD6CB2B" Association="Self.FK__Monday__DNoteCat__5CD6CB2B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Monday" EntitySet="Monday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Saturday__DNoteC__6B24EA82" Association="Self.FK__Saturday__DNoteC__6B24EA82">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Saturday" EntitySet="Saturday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sunday__DNoteCat__6EF57B66" Association="Self.FK__Sunday__DNoteCat__6EF57B66">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Sunday" EntitySet="Sunday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__3A81B327" Association="Self.FK__TasksFold__NoteC__3A81B327">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder1" EntitySet="TasksFolder1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__3E52440B" Association="Self.FK__TasksFold__NoteC__3E52440B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder2" EntitySet="TasksFolder2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__4222D4EF" Association="Self.FK__TasksFold__NoteC__4222D4EF">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder3" EntitySet="TasksFolder3" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Thursday__DNoteC__656C112C" Association="Self.FK__Thursday__DNoteC__656C112C">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Thursday" EntitySet="Thursday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tuesday__DNoteCa__5FB337D6" Association="Self.FK__Tuesday__DNoteCa__5FB337D6">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Tuesday" EntitySet="Tuesday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wednesday__DNote__628FA481" Association="Self.FK__Wednesday__DNote__628FA481">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Wednesday" EntitySet="Wednesday" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RaspberryNoteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Friday" Relationship="Self.FK__Friday__DNoteCat__68487DD7" FromRole="Categories" ToRole="Friday" />
+          <NavigationProperty Name="Monday" Relationship="Self.FK__Monday__DNoteCat__5CD6CB2B" FromRole="Categories" ToRole="Monday" />
+          <NavigationProperty Name="Saturday" Relationship="Self.FK__Saturday__DNoteC__6B24EA82" FromRole="Categories" ToRole="Saturday" />
+          <NavigationProperty Name="Sunday" Relationship="Self.FK__Sunday__DNoteCat__6EF57B66" FromRole="Categories" ToRole="Sunday" />
+          <NavigationProperty Name="TasksFolder1" Relationship="Self.FK__TasksFold__NoteC__3A81B327" FromRole="Categories" ToRole="TasksFolder1" />
+          <NavigationProperty Name="TasksFolder2" Relationship="Self.FK__TasksFold__NoteC__3E52440B" FromRole="Categories" ToRole="TasksFolder2" />
+          <NavigationProperty Name="TasksFolder3" Relationship="Self.FK__TasksFold__NoteC__4222D4EF" FromRole="Categories" ToRole="TasksFolder3" />
+          <NavigationProperty Name="Thursday" Relationship="Self.FK__Thursday__DNoteC__656C112C" FromRole="Categories" ToRole="Thursday" />
+          <NavigationProperty Name="Tuesday" Relationship="Self.FK__Tuesday__DNoteCa__5FB337D6" FromRole="Categories" ToRole="Tuesday" />
+          <NavigationProperty Name="Wednesday" Relationship="Self.FK__Wednesday__DNote__628FA481" FromRole="Categories" ToRole="Wednesday" />
+        </EntityType>
+        <EntityType Name="Friday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Friday__DNoteCat__68487DD7" FromRole="Friday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Monday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Monday__DNoteCat__5CD6CB2B" FromRole="Monday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Saturday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Saturday__DNoteC__6B24EA82" FromRole="Saturday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Sunday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Sunday__DNoteCat__6EF57B66" FromRole="Sunday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TasksFolder1">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteDateCreated" Type="DateTime" Precision="0" />
+          <Property Name="NoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NoteState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NoteFinishDate" Type="DateTime" Precision="0" />
+          <Property Name="NoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__TasksFold__NoteC__3A81B327" FromRole="TasksFolder1" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="TasksFolder2">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteDateCreated" Type="DateTime" Precision="0" />
+          <Property Name="NoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NoteState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NoteFinishDate" Type="DateTime" Precision="0" />
+          <Property Name="NoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__TasksFold__NoteC__3E52440B" FromRole="TasksFolder2" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="TasksFolder3">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteDateCreated" Type="DateTime" Precision="0" />
+          <Property Name="NoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NoteState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NoteFinishDate" Type="DateTime" Precision="0" />
+          <Property Name="NoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__TasksFold__NoteC__4222D4EF" FromRole="TasksFolder3" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Thursday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Thursday__DNoteC__656C112C" FromRole="Thursday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Tuesday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Tuesday__DNoteCa__5FB337D6" FromRole="Tuesday" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Wednesday">
+          <Key>
+            <PropertyRef Name="DNoteId" />
+          </Key>
+          <Property Name="DNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNoteDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DNoteCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Wednesday__DNote__628FA481" FromRole="Wednesday" ToRole="Categories" />
+        </EntityType>
+        <Association Name="FK__Friday__DNoteCat__68487DD7">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Friday" Type="Self.Friday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Friday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monday__DNoteCat__5CD6CB2B">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Monday" Type="Self.Monday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Monday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Saturday__DNoteC__6B24EA82">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Saturday" Type="Self.Saturday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Saturday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sunday__DNoteCat__6EF57B66">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Sunday" Type="Self.Sunday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Sunday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__3A81B327">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder1" Type="Self.TasksFolder1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder1">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__3E52440B">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder2" Type="Self.TasksFolder2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder2">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TasksFold__NoteC__4222D4EF">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="TasksFolder3" Type="Self.TasksFolder3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="TasksFolder3">
+              <PropertyRef Name="NoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Thursday__DNoteC__656C112C">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Thursday" Type="Self.Thursday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Thursday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tuesday__DNoteCa__5FB337D6">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Tuesday" Type="Self.Tuesday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Tuesday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Wednesday__DNote__628FA481">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Wednesday" Type="Self.Wednesday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Wednesday">
+              <PropertyRef Name="DNoteCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RaspberryNoteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Friday" EntityType="Self.Friday" />
+          <EntitySet Name="Monday" EntityType="Self.Monday" />
+          <EntitySet Name="Saturday" EntityType="Self.Saturday" />
+          <EntitySet Name="Sunday" EntityType="Self.Sunday" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TasksFolder1" EntityType="Self.TasksFolder1" />
+          <EntitySet Name="TasksFolder2" EntityType="Self.TasksFolder2" />
+          <EntitySet Name="TasksFolder3" EntityType="Self.TasksFolder3" />
+          <EntitySet Name="Thursday" EntityType="Self.Thursday" />
+          <EntitySet Name="Tuesday" EntityType="Self.Tuesday" />
+          <EntitySet Name="Wednesday" EntityType="Self.Wednesday" />
+          <AssociationSet Name="FK__Friday__DNoteCat__68487DD7" Association="Self.FK__Friday__DNoteCat__68487DD7">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Friday" EntitySet="Friday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monday__DNoteCat__5CD6CB2B" Association="Self.FK__Monday__DNoteCat__5CD6CB2B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Monday" EntitySet="Monday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Saturday__DNoteC__6B24EA82" Association="Self.FK__Saturday__DNoteC__6B24EA82">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Saturday" EntitySet="Saturday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sunday__DNoteCat__6EF57B66" Association="Self.FK__Sunday__DNoteCat__6EF57B66">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Sunday" EntitySet="Sunday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__3A81B327" Association="Self.FK__TasksFold__NoteC__3A81B327">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder1" EntitySet="TasksFolder1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__3E52440B" Association="Self.FK__TasksFold__NoteC__3E52440B">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder2" EntitySet="TasksFolder2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TasksFold__NoteC__4222D4EF" Association="Self.FK__TasksFold__NoteC__4222D4EF">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="TasksFolder3" EntitySet="TasksFolder3" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Thursday__DNoteC__656C112C" Association="Self.FK__Thursday__DNoteC__656C112C">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Thursday" EntitySet="Thursday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tuesday__DNoteCa__5FB337D6" Association="Self.FK__Tuesday__DNoteCa__5FB337D6">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Tuesday" EntitySet="Tuesday" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Wednesday__DNote__628FA481" Association="Self.FK__Wednesday__DNote__628FA481">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Wednesday" EntitySet="Wednesday" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RaspberryNoteModelContainer" CdmEntityContainer="RaspberryNoteEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Friday">
+              <MappingFragment StoreEntitySet="Friday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Monday">
+              <MappingFragment StoreEntitySet="Monday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saturday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Saturday">
+              <MappingFragment StoreEntitySet="Saturday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sunday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Sunday">
+              <MappingFragment StoreEntitySet="Sunday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksFolder1">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.TasksFolder1">
+              <MappingFragment StoreEntitySet="TasksFolder1">
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="NoteDateCreated" ColumnName="NoteDateCreated" />
+                <ScalarProperty Name="NoteDescription" ColumnName="NoteDescription" />
+                <ScalarProperty Name="NoteState" ColumnName="NoteState" />
+                <ScalarProperty Name="NoteFinishDate" ColumnName="NoteFinishDate" />
+                <ScalarProperty Name="NoteCategory" ColumnName="NoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksFolder2">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.TasksFolder2">
+              <MappingFragment StoreEntitySet="TasksFolder2">
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="NoteDateCreated" ColumnName="NoteDateCreated" />
+                <ScalarProperty Name="NoteDescription" ColumnName="NoteDescription" />
+                <ScalarProperty Name="NoteState" ColumnName="NoteState" />
+                <ScalarProperty Name="NoteFinishDate" ColumnName="NoteFinishDate" />
+                <ScalarProperty Name="NoteCategory" ColumnName="NoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksFolder3">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.TasksFolder3">
+              <MappingFragment StoreEntitySet="TasksFolder3">
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="NoteDateCreated" ColumnName="NoteDateCreated" />
+                <ScalarProperty Name="NoteDescription" ColumnName="NoteDescription" />
+                <ScalarProperty Name="NoteState" ColumnName="NoteState" />
+                <ScalarProperty Name="NoteFinishDate" ColumnName="NoteFinishDate" />
+                <ScalarProperty Name="NoteCategory" ColumnName="NoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thursday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Thursday">
+              <MappingFragment StoreEntitySet="Thursday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tuesday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Tuesday">
+              <MappingFragment StoreEntitySet="Tuesday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wednesday">
+            <EntityTypeMapping TypeName="RaspberryNoteModel.Wednesday">
+              <MappingFragment StoreEntitySet="Wednesday">
+                <ScalarProperty Name="DNoteId" ColumnName="DNoteId" />
+                <ScalarProperty Name="DNoteDescription" ColumnName="DNoteDescription" />
+                <ScalarProperty Name="DNoteCategory" ColumnName="DNoteCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

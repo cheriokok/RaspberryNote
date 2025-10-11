@@ -16,16 +16,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
             <Button x:Name="SettingsButton" Click="SettingsButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA"  FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical" Margin="10">
-                    <Image Source="/Images/folders.png" Width="40" Height="40"/>
-                    <TextBlock Text="Настройки" FontSize="12" HorizontalAlignment="Center" Foreground="#BA487F"/>
-                </StackPanel>
-            </Button>
-            <Button x:Name="InfoButton" Click="InfoButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA"  FontFamily="Cascadia Code">
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <Image Source="/Images/folders.png" Width="40" Height="40"/>
+                    <Image Source="/images/info.png" Width="40" Height="40"/>
                     <TextBlock Text="Информация" FontSize="12" HorizontalAlignment="Center" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
+          
         </StackPanel>
 
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
@@ -54,8 +49,8 @@
 
             <Button x:Name="NavButton3" Grid.Column="2" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/folders.png" Width="70" Height="70"/>
-                    <TextBlock Text="Страница 3" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
+                    <Image Source="/images/calendar.png" Width="70" Height="70"/>
+                    <TextBlock Text="Календарь" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 

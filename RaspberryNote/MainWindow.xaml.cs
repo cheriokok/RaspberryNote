@@ -27,6 +27,7 @@ namespace RaspberryNote
         private void NavButton_Click(object sender, RoutedEventArgs e)
         {
             LoadPage($"PageFolders.xaml");
+            
 
         }
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
