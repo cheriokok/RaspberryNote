@@ -26,12 +26,31 @@ namespace RaspberryNote
         }
         private void SubPageButton_Click(object sender, RoutedEventArgs e)
         {
-            Window foldersInside;
-            foldersInside = new WindowFoldersInside();
+            string pageName = "PageFolder1.xaml"; // по умолчанию
+
+            if (sender is Button button)
+            {
+                switch (button.Name)
+                {
+                    case "BtnFolder1":
+                        pageName = "PageFolder1.xaml";
+                        break;
+                    case "BtnFolder2":
+                        pageName = "PageFolder2.xaml";
+                        break;
+                    case "BtnFolder3":
+                        pageName = "PageFolder3.xaml";
+                        break;
+                }
+
+               
+            }
+
+            Window foldersInside = new WindowFoldersInside(pageName);
             foldersInside.Show();
+
             Window currentWindow = Window.GetWindow(this);
             currentWindow.Close();
-
         }
     }
     

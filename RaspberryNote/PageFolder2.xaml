@@ -1,0 +1,120 @@
+﻿<Page x:Class="RaspberryNote.PageFolder2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RaspberryNote"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageFolder2">
+    <Page.Background>
+        <ImageBrush ImageSource="/images/background_page.png" 
+Stretch="UniformToFill"/>
+    </Page.Background>
+
+    <Grid Margin="0,10,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="600"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Текущие задачи" 
+        FontSize="24" Foreground="#BA487F" 
+        HorizontalAlignment="Center" 
+        Margin="0,10,0,10"  FontFamily="Cascadia Code"
+                Grid.Column="1"/>
+        <Button x:Name="NavButton1" Grid.Column="0" Grid.Row="1"  Click="BackButton_Click" BorderBrush="#FFEDFA" Background="Transparent" FontFamily="Cascadia Code" Margin="0,0,0,200">
+            <StackPanel Orientation="Vertical" >
+                <Image Source="/images/back.png" Width="80" Height="80"/>
+                <TextBlock Text="Назад" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
+            </StackPanel>
+        </Button>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="10" Grid.Row="1" Grid.Column="1"
+       HeadersVisibility="Column"
+       CanUserAddRows="False"
+       CanUserDeleteRows="False"
+       CanUserResizeColumns="True"
+       CanUserSortColumns="True"
+              
+       IsReadOnly="True"
+       SelectionMode="Single"
+               
+               Background="Transparent">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Padding" Value="8"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF3D7BFF"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#BA487F"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="#BA487F"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#FFEDFA"/>
+                    <Setter Property="Padding" Value="8"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding NoteCategory}" Value="Без темы">
+                            <Setter Property="Background" Value="#FF64B5F6"/>
+                            <Setter Property="FontFamily" Value="Cascadia Code"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding NoteCategory}" Value="Учеба">
+                            <Setter Property="Background" Value="#FF9575CD"/>
+                            <Setter Property="FontFamily" Value="Cascadia Code"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding NoteCategory}" Value="Дом">
+                            <Setter Property="Background" Value="#FF66BB6A"/>
+                            <Setter Property="FontFamily" Value="Cascadia Code"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+
+
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Описание задачи" Binding="{Binding NoteDescription}" Width="220"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding NoteState}" Width="140"/>
+                <DataGridTextColumn Header="Дэдлайн" Binding="{Binding NoteFinishDate, StringFormat=dd.MM.yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding NoteCategory}" Width="130"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" 
+         Orientation="Horizontal" 
+         HorizontalAlignment="Center" 
+         Margin="0,10,0,10" Grid.Column="1" >
+
+        </StackPanel>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
+    </Grid>
+</Page>

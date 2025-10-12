@@ -36,28 +36,28 @@
             <Button x:Name="NavButton1" Grid.Column="0" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical" >
                     <Image Source="/Images/folders.png" Width="70" Height="70"/>
-                    <TextBlock Text="Страница 1" FontSize="14" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="#BA487F"/>
+                    <TextBlock Text="Папки" FontSize="14" HorizontalAlignment="Center"  FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
-            <Button x:Name="NavButton2" Grid.Column="1" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
+            <Button x:Name="FilterButton" Grid.Column="1" Click="SubPageButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/filter.png" Width="60" Height="60"/>
-                    <TextBlock Text="Страница 2" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
+                    <Image Source="/Images/filter.png" Width="65" Height="70"/>
+                    <TextBlock Text="Фильтры" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
-            <Button x:Name="NavButton3" Grid.Column="2" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
+            <Button x:Name="CalendarButton" Grid.Column="2" Click="SubPageButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
                     <Image Source="/images/calendar.png" Width="70" Height="70"/>
                     <TextBlock Text="Календарь" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
 
-            <Button x:Name="NavButton4" Grid.Column="3" Click="NavButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
+            <Button x:Name="FilesButton" Grid.Column="3" Click="SubPageButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA" FontFamily="Cascadia Code">
                 <StackPanel Orientation="Vertical">
-                    <Image Source="/Images/folders.png" Width="70" Height="70"/>
-                    <TextBlock Text="Страница 4" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
+                    <Image Source="/images/storing.png" Width="80" Height="80"/>
+                    <TextBlock Text="Файлы" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
                 </StackPanel>
             </Button>
         </Grid>

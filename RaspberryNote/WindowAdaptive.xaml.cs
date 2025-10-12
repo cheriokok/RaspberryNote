@@ -15,16 +15,15 @@ using System.Windows.Shapes;
 namespace RaspberryNote
 {
     /// <summary>
-    /// Логика взаимодействия для WindowFoldersInside.xaml
+    /// Логика взаимодействия для WindowAdaptive.xaml
     /// </summary>
-    public partial class WindowFoldersInside : Window
+    public partial class WindowAdaptive : Window
     {
-        public WindowFoldersInside()
+        public WindowAdaptive()
         {
             InitializeComponent();
-            LoadPage($"PageFolder1.xaml");
         }
-        public WindowFoldersInside(string pageName)
+        public WindowAdaptive(string pageName)
         {
             InitializeComponent();
             LoadPage(pageName);

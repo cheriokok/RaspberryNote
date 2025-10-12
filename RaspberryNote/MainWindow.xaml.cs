@@ -46,5 +46,33 @@ namespace RaspberryNote
             }
         }
 
+        private void SubPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            string pageName = "PageFolder1.xaml"; 
+
+            if (sender is Button button)
+            {
+                switch (button.Name)
+                {
+                    case "FilterButton":
+                        pageName = "PageFolder1.xaml";
+                        break;
+                    case "CalendarButton":
+                        pageName = "PageCalendar.xaml";
+                        break;
+                    case "BtnFolder3":
+                        pageName = "PageFolder3.xaml";
+                        break;
+                }
+
+
+            }
+
+            Window windowAdaptive = new WindowAdaptive(pageName);
+            windowAdaptive.Show();
+
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow.Close();
+        }
     }
 }

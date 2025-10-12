@@ -86,6 +86,15 @@
     <Compile Include="Monday.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageCalendar.xaml.cs">
+      <DependentUpon>PageCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder2.xaml.cs">
+      <DependentUpon>PageFolder2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder3.xaml.cs">
+      <DependentUpon>PageFolder3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Saturday.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -113,6 +122,9 @@
     <Compile Include="Wednesday.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="WindowAdaptive.xaml.cs">
+      <DependentUpon>WindowAdaptive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFoldersInside.xaml.cs">
       <DependentUpon>WindowFoldersInside.xaml</DependentUpon>
     </Compile>
@@ -128,11 +140,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PageCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowAdaptive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +234,7 @@
     <Resource Include="images\info.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\storing.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
