@@ -30,6 +30,7 @@ namespace RaspberryNote
             
 
         }
+        
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         { }
         private void InfoButton_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,10 @@ namespace RaspberryNote
                     case "BtnFolder3":
                         pageName = "PageFolder3.xaml";
                         break;
+                    case "FilesButton":
+                        pageName = "PageFileStore.xaml";
+                        break;
+                       
                 }
 
 
