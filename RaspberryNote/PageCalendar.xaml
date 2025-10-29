@@ -55,7 +55,7 @@
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto"
                       >
-            <Grid Margin="10">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -71,7 +71,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="0" Grid.Column="0" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="0" Grid.Column="0" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Понедельник" 
                                    FontSize="16" 
@@ -124,7 +124,7 @@
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="1" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="0" Grid.Column="1" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Вторник" 
                                    FontSize="16" 
@@ -170,14 +170,14 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="2" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="0" Grid.Column="2" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Среда" 
                                    FontSize="16" 
@@ -216,22 +216,22 @@
                             </DataGrid.Resources>
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
-                                    <Setter Property="Background" Value="#FFEDFA"/>
+                                    <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="Padding" Value="5"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                     <Setter Property="Height" Value="25"/>
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Border>
 
                 <!-- Четверг -->
-                <Border Grid.Row="0" Grid.Column="3" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="0" Grid.Column="3" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Четверг" 
                                    FontSize="16" 
@@ -270,21 +270,21 @@
                             </DataGrid.Resources>
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
-                                    <Setter Property="Background" Value="#FFEDFA"/>
+                                    <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="Padding" Value="5"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                     <Setter Property="Height" Value="25"/>
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="0" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="1" Grid.Column="0" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Пятница" 
                                    FontSize="16" 
@@ -330,14 +330,14 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="1" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="1" Grid.Column="1" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Суббота" 
                                    FontSize="16" 
@@ -383,14 +383,14 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="2" Margin="2" Background="#FFEDFA" CornerRadius="5">
+                <Border Grid.Row="1" Grid.Column="2" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Воскресенье" 
                                    FontSize="16" 
@@ -436,8 +436,8 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDesription}" Width="80"/>
-                                <DataGridTextColumn Header="Категория" Binding="{Binding dNoteCategory}" Width="70"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
