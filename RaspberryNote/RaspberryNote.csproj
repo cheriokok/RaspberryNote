@@ -92,6 +92,9 @@
     <Compile Include="PageFileStore.xaml.cs">
       <DependentUpon>PageFileStore.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFilters.xaml.cs">
+      <DependentUpon>PageFilters.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder2.xaml.cs">
       <DependentUpon>PageFolder2.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFileStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFilters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,9 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\starcursor.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\background_page.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\in_folder.png" />

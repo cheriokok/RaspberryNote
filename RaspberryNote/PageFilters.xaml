@@ -1,0 +1,190 @@
+﻿<Page x:Class="RaspberryNote.PageFilters"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RaspberryNote"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Просмотр задач">
+
+
+    <Grid Margin="0,10,0,0" Background="#FFEDFA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Фильтрация" 
+                   FontSize="24" 
+                   Foreground="#BA487F" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,10,0,10"  
+                   FontFamily="Cascadia Code"
+                   Grid.Column="1"/>
+
+        <Button x:Name="NavButtonBack" 
+                Grid.Column="0" 
+                Grid.Row="3"  
+                Click="BackButton_Click" 
+                BorderBrush="#FFEDFA" 
+                Background="Transparent" 
+                FontFamily="Cascadia Code" 
+                Margin="0,0,0,0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/images/back.png" Width="80" Height="80"/>
+                <TextBlock Text="Назад" 
+                           FontSize="14" 
+                           HorizontalAlignment="Center" 
+                           FontWeight="Bold" 
+                           Foreground="#BA487F"/>
+            </StackPanel>
+        </Button>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,20,10">
+            <TextBlock Text="Выберите категорию:" 
+                       FontFamily="Cascadia Code"
+                       FontSize="14"
+                       Foreground="#BA487F"
+                       FontWeight="Bold"
+                       Margin="0,0,0,5"/>
+
+            <ComboBox x:Name="CategoryComboBox" 
+                      FontFamily="Cascadia Code"
+                      FontSize="12"
+                      Height="30"
+                      SelectionChanged="CategoryComboBox_SelectionChanged"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Margin="10,0,0,10">
+            <Button x:Name="View1Button" 
+                    Content="Срочные" 
+                    Background="#BA487F" 
+                    Foreground="White" 
+                    FontFamily="Cascadia Code"
+                    FontWeight="Bold"
+                    Padding="15,5"
+                    Margin="5,0"
+                    Click="View1Button_Click"/>
+            <Button x:Name="View2Button" 
+                    Content="Важные" 
+                    Background="#BA487F" 
+                    Foreground="White" 
+                    FontFamily="Cascadia Code"
+                    FontWeight="Bold"
+                    Padding="15,5"
+                    Margin="5,0"
+                    Click="View2Button_Click"/>
+            <Button x:Name="View3Button" 
+                    Content="Выполненные" 
+                    Background="#BA487F" 
+                    Foreground="White" 
+                    FontFamily="Cascadia Code"
+                    FontWeight="Bold"
+                    Padding="15,5"
+                    Margin="5,0"
+                    Click="View3Button_Click"/>
+            <Button x:Name="View4Button" 
+                    Content="Просроченные" 
+                    Background="#BA487F" 
+                    Foreground="White" 
+                    FontFamily="Cascadia Code"
+                    FontWeight="Bold"
+                    Padding="15,5"
+                    Margin="5,0"
+                    Click="View4Button_Click"/>
+            <Button x:Name="View5Button" 
+                    Content="Новые" 
+                    Background="#BA487F" 
+                    Foreground="White" 
+                    FontFamily="Cascadia Code"
+                    FontWeight="Bold"
+                    Padding="15,5"
+                    Margin="5,0"
+                    Click="View5Button_Click"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="3" 
+                      Grid.Column="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      Margin="10,0,20,0">
+            <DataGrid x:Name="TasksDataGrid"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      Background="Transparent">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="#BA487F"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    </Style>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#BA487F"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontFamily" Value="Cascadia Code"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#FFEDFA"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="35"/>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Описание задачи" 
+                                      Binding="{Binding NoteDescription}" 
+                                      Width="220"/>
+                    <DataGridTextColumn Header="Статус" 
+                  Binding="{Binding NoteState}" 
+                  Width="140"/>
+                    <DataGridTextColumn Header="Дэдлайн" 
+                   Binding="{Binding NoteFinishDate}" 
+                   Width="100"/>
+                    <DataGridTextColumn Header="Категория" 
+                                      Binding="{Binding NoteCategory}" 
+                                      Width="130"/>
+           
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <TextBlock x:Name="StatusTextBlock" 
+                   Grid.Row="4" 
+                   Grid.Column="1" 
+                   FontFamily="Cascadia Code"
+                   FontSize="11"
+                   Foreground="#666"
+                   Margin="10,5,0,5"
+                   Text="Выберите категорию для отображения задач"/>
+
+        <Frame x:Name="MainFrame" 
+               NavigationUIVisibility="Hidden" 
+               Grid.Column="1"
+               Grid.RowSpan="5"/>
+    </Grid>
+</Page>

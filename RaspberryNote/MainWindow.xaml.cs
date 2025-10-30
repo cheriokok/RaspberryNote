@@ -56,7 +56,7 @@ namespace RaspberryNote
                 switch (button.Name)
                 {
                     case "FilterButton":
-                        pageName = "PageFolder1.xaml";
+                        pageName = "PageFilters.xaml";
                         break;
                     case "CalendarButton":
                         pageName = "PageCalendar.xaml";
