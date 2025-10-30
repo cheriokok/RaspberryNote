@@ -135,28 +135,20 @@ namespace RaspberryNote
 
         private void View1Button_Click(object sender, RoutedEventArgs e)
         {
-            LoadFixedView("Срочные", "WHERE Priority >= 3");
+            LoadFixedView("Не начатые", "WHERE NoteState='Запланирована'");
         }
 
         private void View2Button_Click(object sender, RoutedEventArgs e)
         {
-            LoadFixedView("Важные", "WHERE Priority >= 4");
+            LoadFixedView("Истекающие", "WHERE DATEDIFF(day, GETDATE(), NoteFinishDate) <= 3 AND DATEDIFF(day, GETDATE(), NoteFinishDate) >= 0 ");
         }
 
         private void View3Button_Click(object sender, RoutedEventArgs e)
         {
-            LoadFixedView("Выполненные", "WHERE IsCompleted = 1");
+            LoadFixedView("Выполненные", "WHERE NoteState='Завершена'");
         }
 
-        private void View4Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoadFixedView("Просроченные", "WHERE DueDate < GETDATE() AND IsCompleted = 0");
-        }
-
-        private void View5Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoadFixedView("Новые", "WHERE CreatedDate >= DATEADD(day, -7, GETDATE())");
-        }
+  
 
         private void LoadFixedView(string viewName, string whereClause)
         {
@@ -174,14 +166,13 @@ namespace RaspberryNote
                     {
                         var query = $@"
                             SELECT 
-                                NoteDescription as 'Описание',
-                                NoteState as 'Статус',
-                                NoteFinishDate as 'Дэдлайн',
-                                NoteCategory as 'Категория',
+                                NoteDescription,
+                                NoteState,
+                                NoteFinishDate,
+                                NoteCategory,
                                 '@TableName' as 'Папка'
                             FROM {tableName} 
-                            {whereClause}
-                            AND NoteDescription IS NOT NULL";
+                            {whereClause}";
 
                         query = query.Replace("@TableName", tableName);
 
