@@ -32,7 +32,11 @@ namespace RaspberryNote
         }
         
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        { }
+        {
+            MessageBox.Show("Проект был выполнен:  \n Группа:  \n Тестовая информация \n Не забыть поменять", "Информация",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         { }
         private void LoadPage(string pageName)

@@ -196,7 +196,10 @@ namespace RaspberryNote
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.GoBack();
+            Window mainWindow = new MainWindow();
+            mainWindow.Show();
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
         }
     }
 }
