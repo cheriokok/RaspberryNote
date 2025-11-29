@@ -26,7 +26,7 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="SubPageButton3" Click="SubPageButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA"  FontFamily="Cascadia Code" Margin="20,0,20,0">
+            <Button x:Name="BtnFolder3" Click="SubPageButton_Click" BorderBrush="#FFEDFA" Background="#FFEDFA"  FontFamily="Cascadia Code" Margin="20,0,20,0">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="/Images/in_folder.png" Width="90" Height="90"/>
                     <TextBlock Text="Папка 3" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,0" Foreground="#BA487F" FontWeight="Bold"/>

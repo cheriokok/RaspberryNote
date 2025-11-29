@@ -95,7 +95,7 @@ namespace RaspberryNote
                     using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
                         command.Parameters.AddWithValue("@Description", txtDescription.Text);
-                        command.Parameters.AddWithValue("@State", cmbState.SelectedItem?.ToString() ?? "Новая");
+                        command.Parameters.AddWithValue("@State", (cmbState.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Новая");
                         command.Parameters.AddWithValue("@FinishDate",
     DateTime.TryParse(txtFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
                         command.Parameters.AddWithValue("@Category", CategoryComboBox.SelectedValue?.ToString() ?? "Без темы");
@@ -146,7 +146,7 @@ namespace RaspberryNote
                     {
                         command.Parameters.AddWithValue("@NoteID", noteId);
                         command.Parameters.AddWithValue("@Description", txtDescription.Text);
-                        command.Parameters.AddWithValue("@State", cmbState.SelectedItem?.ToString() ?? "Новая");
+                        command.Parameters.AddWithValue("@State", (cmbState.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Новая");
                         command.Parameters.AddWithValue("@FinishDate",
      DateTime.TryParse(txtFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
                         command.Parameters.AddWithValue("@Category", CategoryComboBox.SelectedValue?.ToString() ?? "1");
@@ -260,6 +260,7 @@ namespace RaspberryNote
                 {
                     connection.Open();
                     string query = @"SELECT 
+                    NoteID,
                     NoteDescription,
                     NoteState,
                     NoteFinishDate, 

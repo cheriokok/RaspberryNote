@@ -26,7 +26,7 @@ namespace RaspberryNote
         }
         private void SubPageButton_Click(object sender, RoutedEventArgs e)
         {
-            string pageName = "PageFolder1.xaml"; // по умолчанию
+            string pageName = "PageFolder1.xaml"; 
 
             if (sender is Button button)
             {

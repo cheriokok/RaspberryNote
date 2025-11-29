@@ -8,7 +8,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageFolder2">
 
-
     <Grid Margin="0,10,10,0" Background="#FFEDFA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -18,31 +17,32 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
         <TextBlock Text="Текущие задачи" 
-        FontSize="24" Foreground="#BA487F" 
-        HorizontalAlignment="Center" 
-        Margin="0,10,0,10"  FontFamily="Cascadia Code"
-                Grid.Column="1"/>
-        <Button x:Name="NavButton1" Grid.Column="0" Grid.Row="1"  Click="BackButton_Click" BorderBrush="#FFEDFA" Background="Transparent" FontFamily="Cascadia Code" Margin="0,0,0,200">
+           FontSize="24" Foreground="#BA487F" 
+           HorizontalAlignment="Center" 
+           Margin="0,10,0,10"  FontFamily="Cascadia Code"
+                   Grid.Column="1"/>
+
+        <Button x:Name="NavButton1" Grid.Column="0" Grid.Row="1"  Click="BackButton_Click" BorderBrush="#FFEDFA" Background="Transparent" FontFamily="Cascadia Code" Margin="0,0,0,0" VerticalAlignment="Top">
             <StackPanel Orientation="Vertical" >
                 <Image Source="/images/back.png" Width="80" Height="80"/>
                 <TextBlock Text="Назад" FontSize="14" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#BA487F"/>
             </StackPanel>
         </Button>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="10" Grid.Row="1" Grid.Column="1"
-       HeadersVisibility="Column"
-       CanUserAddRows="False"
-       CanUserDeleteRows="False"
-       CanUserResizeColumns="True"
-       CanUserSortColumns="True"
-              
-       IsReadOnly="True"
-       SelectionMode="Single"
-               
-               Background="Transparent">
+
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="0,0,15,0" Grid.Row="1" Grid.Column="1"
+          HeadersVisibility="Column"
+          CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          CanUserResizeColumns="True"
+          CanUserSortColumns="True"
+          IsReadOnly="True"
+          SelectionMode="Single"
+          Background="Transparent"
+          SelectionChanged="dataGrid_SelectionChanged">
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">
@@ -92,8 +92,6 @@
                             <Setter Property="FontFamily" Value="Cascadia Code"/>
                             <Setter Property="FontWeight" Value="Bold"/>
                         </DataTrigger>
-
-
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
@@ -106,12 +104,63 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" 
-         Orientation="Horizontal" 
-         HorizontalAlignment="Center" 
-         Margin="0,10,0,10" Grid.Column="1" >
+        <Border Grid.Row="2" Grid.Column="1" Background="White" Margin="10,5,15,15" 
+                BorderBrush="#BA487F" BorderThickness="1" CornerRadius="5" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
 
-        </StackPanel>
+                <TextBox x:Name="txtDescription" Grid.Column="0" Grid.ColumnSpan="6"  Grid.Row="0" Margin="5" 
+                         Text="Описание задачи" FontFamily="Cascadia Code" FontSize="12"
+                         Foreground="Gray" VerticalContentAlignment="Center"/>
+
+                <ComboBox x:Name="cmbState" Grid.Column="1" Grid.Row="1" Margin="5" FontFamily="Cascadia Code" FontSize="12"
+                          VerticalContentAlignment="Center">
+                    <ComboBoxItem>Запланирована</ComboBoxItem>
+                    <ComboBoxItem>Выполняется</ComboBoxItem>
+                    <ComboBoxItem>Завершена</ComboBoxItem> 
+                </ComboBox>
+
+                <TextBox x:Name="txtFinishDate" Grid.Column="2" Grid.Row="1" Margin="5" 
+                         Text="дд.мм.гггг" FontFamily="Cascadia Code" FontSize="12"
+                         Foreground="Gray" VerticalContentAlignment="Center"/>
+
+                <ComboBox x:Name="CategoryComboBox" 
+           FontSize="12"
+           Height="30"
+             Grid.Row="1" Grid.Column="3"
+           SelectionChanged="CategoryComboBox_SelectionChanged"/>
+
+                <Button x:Name="btnAdd" Grid.Column="4" Grid.Row="1" Margin="5" Content="Добавить" 
+                        Background="#BA487F" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+                        Click="AddButton_Click"
+                        
+                        />
+
+                <Button x:Name="btnEdit" Grid.Column="5" Grid.Row="1" Margin="5" Content="Изменить" 
+                        Background="#FF9575CD" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+                        Click="EditButton_Click"
+                        />
+
+                <Button x:Name="btnDelete" Grid.Column="6" Grid.Row="1" Margin="5" Content="Удалить" 
+                        Background="#FF5252" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+                        Click="DeleteButton_Click"/>
+            </Grid>
+        </Border>
+
+
+
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
     </Grid>
 </Page>
