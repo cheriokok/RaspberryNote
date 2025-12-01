@@ -83,7 +83,32 @@ namespace RaspberryNote
                                   MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
+                if (cmbState.SelectedItem == null)
+                {
+                    MessageBox.Show("Выберите состояние задачи", "Ошибка",
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
 
+                if (string.IsNullOrWhiteSpace(dpFinishDate.Text))
+                {
+                    MessageBox.Show("Выберите дату завершения", "Ошибка",
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (CategoryComboBox.SelectedValue == null)
+                {
+                    MessageBox.Show("Выберите категорию", "Ошибка",
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if (txtDescription.Text.Length > 250)
+                {
+                    MessageBox.Show("Описание задачи не должно превышать 250 символов", "Ошибка",
+                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -97,7 +122,7 @@ namespace RaspberryNote
                         command.Parameters.AddWithValue("@Description", txtDescription.Text);
                         command.Parameters.AddWithValue("@State", (cmbState.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Новая");
                         command.Parameters.AddWithValue("@FinishDate",
-    DateTime.TryParse(txtFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
+    DateTime.TryParse(dpFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
                         command.Parameters.AddWithValue("@Category", CategoryComboBox.SelectedValue?.ToString() ?? "Без темы");
 
                         command.ExecuteNonQuery();
@@ -125,7 +150,16 @@ namespace RaspberryNote
                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+           
 
+            if (string.IsNullOrWhiteSpace(dpFinishDate.Text))
+            {
+                MessageBox.Show("Выберите дату завершения", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            
             try
             {
                 DataRowView selectedRow = (DataRowView)dataGrid.SelectedItem;
@@ -148,7 +182,7 @@ namespace RaspberryNote
                         command.Parameters.AddWithValue("@Description", txtDescription.Text);
                         command.Parameters.AddWithValue("@State", (cmbState.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Новая");
                         command.Parameters.AddWithValue("@FinishDate",
-     DateTime.TryParse(txtFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
+     DateTime.TryParse(dpFinishDate.Text, out DateTime date) ? (object)date : DBNull.Value);
                         command.Parameters.AddWithValue("@Category", CategoryComboBox.SelectedValue?.ToString() ?? "1");
 
                         command.ExecuteNonQuery();
@@ -224,11 +258,11 @@ namespace RaspberryNote
 
                 if (selectedRow["NoteFinishDate"] != DBNull.Value)
                 {
-                    txtFinishDate.Text = Convert.ToDateTime(selectedRow["NoteFinishDate"]).ToString("dd.MM.yyyy");
+                    dpFinishDate.Text = Convert.ToDateTime(selectedRow["NoteFinishDate"]).ToString("dd.MM.yyyy");
                 }
                 else
                 {
-                    txtFinishDate.Text = string.Empty;
+                    dpFinishDate.Text = string.Empty;
                 }
 
                 CategoryComboBox.SelectedValue = selectedRow["NoteCategory"].ToString();
@@ -238,7 +272,7 @@ namespace RaspberryNote
         {
             txtDescription.Text = string.Empty;
             cmbState.SelectedIndex = -1;
-            txtFinishDate.Text = string.Empty;
+            dpFinishDate.Text = string.Empty;
             CategoryComboBox.SelectedIndex = -1;
             dataGrid.SelectedItem = null;
         }

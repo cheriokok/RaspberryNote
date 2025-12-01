@@ -121,26 +121,29 @@
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="txtDescription" Grid.Column="0" Grid.ColumnSpan="6"  Grid.Row="0" Margin="5" 
+                <TextBox x:Name="txtDescription" Grid.Column="0" Grid.ColumnSpan="6"  Grid.Row="0"  Margin="0,0,0,5" 
                          Text="Описание задачи" FontFamily="Cascadia Code" FontSize="12"
                          Foreground="Gray" VerticalContentAlignment="Center"/>
 
-                <ComboBox x:Name="cmbState" Grid.Column="1" Grid.Row="1" Margin="5" FontFamily="Cascadia Code" FontSize="12"
-                          VerticalContentAlignment="Center">
+                <ComboBox x:Name="cmbState" Grid.Column="1" Grid.Row="1" Margin="0,0,0,2" FontFamily="Cascadia Code" FontSize="12"
+               VerticalContentAlignment="Center">
                     <ComboBoxItem>Запланирована</ComboBoxItem>
                     <ComboBoxItem>Выполняется</ComboBoxItem>
                     <ComboBoxItem>Завершена</ComboBoxItem>
                 </ComboBox>
 
-                <TextBox x:Name="txtFinishDate" Grid.Column="2" Grid.Row="1" Margin="5" 
-                         Text="дд.мм.гггг" FontFamily="Cascadia Code" FontSize="12"
-                         Foreground="Gray" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="dpFinishDate" Grid.Column="2" Grid.Row="1" Margin="0,0,0,2" 
+                FontFamily="Cascadia Code" FontSize="12"
+                VerticalContentAlignment="Center"
+                SelectedDateFormat="Short"
+                Language="ru-RU"/>
+
 
                 <ComboBox x:Name="CategoryComboBox" 
-           FontSize="12"
-           Height="30"
-             Grid.Row="1" Grid.Column="3"
-           SelectionChanged="CategoryComboBox_SelectionChanged"/>
+FontSize="12"
+Height="30"
+  Grid.Row="1" Grid.Column="3" Margin="0,0,0,2"
+SelectionChanged="CategoryComboBox_SelectionChanged"/>
 
                 <Button x:Name="btnAdd" Grid.Column="4" Grid.Row="1" Margin="5" Content="Добавить" 
                         Background="#BA487F" Foreground="White" FontFamily="Cascadia Code" FontSize="11"

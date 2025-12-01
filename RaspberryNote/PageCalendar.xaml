@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RaspberryNote"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="850"
       Title="PageCalendar">
 
 
 
-    <Grid Margin="0,10,10,0" Background="#FFEDFA">
+    <Grid  Background="#FFEDFA">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -36,10 +36,28 @@
                 BorderBrush="#FFEDFA" 
                 Background="Transparent" 
                 FontFamily="Cascadia Code" 
-                Margin="0,0,0,200">
+               VerticalAlignment="Top">
             <StackPanel Orientation="Vertical">
                 <Image Source="/images/back.png" Width="80" Height="80"/>
                 <TextBlock Text="Назад" 
+                           FontSize="14" 
+                           HorizontalAlignment="Center" 
+                           FontWeight="Bold" 
+                           Foreground="#BA487F"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="DeleteButton" 
+                Grid.Column="0" 
+                Grid.Row="1"  
+                Click="DeleteButton_Click" 
+                BorderBrush="#FFEDFA" 
+                Background="Transparent" 
+                FontFamily="Cascadia Code" 
+               VerticalAlignment="Top"
+               Margin="0,120,0,0">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/images/delete.png" Width="80" Height="80"/>
+                <TextBlock Text="Удалить" 
                            FontSize="14" 
                            HorizontalAlignment="Center" 
                            FontWeight="Bold" 
@@ -71,29 +89,36 @@
                 <Border Grid.Row="0" Grid.Column="0" Margin="2" Background="Transparent" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Понедельник" 
-                                   FontSize="16" 
-                                   FontWeight="Bold" 
-                                   Foreground="#BA487F" 
-                                   HorizontalAlignment="Center" 
-                                   Margin="5" 
-                                   FontFamily="Cascadia Code"/>
+                   FontSize="16" 
+                   FontWeight="Bold" 
+                   Foreground="#BA487F" 
+                   HorizontalAlignment="Center" 
+                   Margin="5" 
+                   FontFamily="Cascadia Code"/>
                         <DataGrid x:Name="MondayGrid" 
-                                  AutoGenerateColumns="False" 
-                                  Margin="5" 
-                                  Height="200"
-                                  Width="150"
-                                  HeadersVisibility="Column"
-                                  CanUserAddRows="False"
-                                  CanUserDeleteRows="False"
-                                  CanUserResizeColumns="True"
-                                  CanUserSortColumns="True"
-                                  IsReadOnly="True"
-                                  SelectionMode="Single"
-                                  Background="Transparent">
+                  AutoGenerateColumns="False" 
+                  Margin="5" 
+                  Height="200"
+                  Width="170"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -108,16 +133,25 @@
                             <DataGrid.RowStyle>
                                 <Style TargetType="DataGridRow">
                                     <Setter Property="Background" Value="#FFEDFA"/>
-                                    <Setter Property="Padding" Value="5"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                     <Setter Property="Height" Value="25"/>
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddMondayBtn" 
+                Click="AddEventButton_Click" 
+                Tag="Monday_Понедельник"
+                BorderBrush="Transparent" 
+                Background="Transparent" 
+                HorizontalAlignment="Center"
+                
+                Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
                     </StackPanel>
                 </Border>
 
@@ -134,7 +168,7 @@
            AutoGenerateColumns="False" 
            Margin="5" 
            Height="200"
-           Width="150"
+           Width="170"
            HeadersVisibility="Column"
            CanUserAddRows="False"
            CanUserDeleteRows="False"
@@ -142,11 +176,19 @@
            CanUserSortColumns="True"
            IsReadOnly="True"
            SelectionMode="Single"
-           Background="Transparent">
+           Background="Transparent"
+                                    SelectionChanged="DataGrid_SelectionChanged">
+
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -167,10 +209,20 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddTuesdayBtn" 
+Click="AddEventButton_Click" 
+Tag="Tuesday_Вторник"
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
                     </StackPanel>
                 </Border>
 
@@ -187,7 +239,7 @@
           AutoGenerateColumns="False" 
           Margin="5" 
           Height="200"
-          Width="150"
+          Width="170"
           HeadersVisibility="Column"
           CanUserAddRows="False"
           CanUserDeleteRows="False"
@@ -195,11 +247,18 @@
           CanUserSortColumns="True"
           IsReadOnly="True"
           SelectionMode="Single"
-          Background="Transparent">
+          Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -220,10 +279,21 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddWednesdayBtn" 
+Click="AddEventButton_Click" 
+Tag="Wednesday_Среда"
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
+
                     </StackPanel>
                 </Border>
 
@@ -240,7 +310,7 @@
           AutoGenerateColumns="False" 
           Margin="5" 
           Height="200"
-          Width="150"
+          Width="170"
           HeadersVisibility="Column"
           CanUserAddRows="False"
           CanUserDeleteRows="False"
@@ -248,11 +318,18 @@
           CanUserSortColumns="True"
           IsReadOnly="True"
           SelectionMode="Single"
-          Background="Transparent">
+          Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -273,10 +350,21 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddThursdayBtn" 
+Click="AddEventButton_Click" 
+Tag="Thursday_Четверг"
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
+
                     </StackPanel>
                 </Border>
 
@@ -293,7 +381,7 @@
            AutoGenerateColumns="False" 
            Margin="5" 
            Height="200"
-           Width="150"
+           Width="170"
            HeadersVisibility="Column"
            CanUserAddRows="False"
            CanUserDeleteRows="False"
@@ -301,11 +389,18 @@
            CanUserSortColumns="True"
            IsReadOnly="True"
            SelectionMode="Single"
-           Background="Transparent">
+           Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -326,10 +421,21 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddFridayBtn" 
+Click="AddEventButton_Click" 
+Tag="Friday_Пятница"
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
+
                     </StackPanel>
                 </Border>
 
@@ -346,7 +452,7 @@
            AutoGenerateColumns="False" 
            Margin="5" 
            Height="200"
-           Width="150"
+           Width="170"
            HeadersVisibility="Column"
            CanUserAddRows="False"
            CanUserDeleteRows="False"
@@ -354,11 +460,18 @@
            CanUserSortColumns="True"
            IsReadOnly="True"
            SelectionMode="Single"
-           Background="Transparent">
+           Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -379,10 +492,21 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddSaturdayBtn" 
+Click="AddEventButton_Click" 
+Tag="Saturday_Суббота"
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
+
                     </StackPanel>
                 </Border>
 
@@ -399,7 +523,7 @@
            AutoGenerateColumns="False" 
            Margin="5" 
            Height="200"
-           Width="150"
+           Width="170"
            HeadersVisibility="Column"
            CanUserAddRows="False"
            CanUserDeleteRows="False"
@@ -407,11 +531,18 @@
            CanUserSortColumns="True"
            IsReadOnly="True"
            SelectionMode="Single"
-           Background="Transparent">
+           Background="Transparent"
+                                  SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#e0609e"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#BA487F"/>
@@ -432,10 +563,20 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="80"/>
+                                <DataGridTextColumn Header="Ивент" Binding="{Binding DNoteDescription}" Width="100"/>
                                 <DataGridTextColumn Header="Категория" Binding="{Binding DNoteCategory}" Width="70"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Button x:Name="AddSundayBtn" 
+Click="AddEventButton_Click" 
+  Tag="Sunday_Воскресенье"                              
+BorderBrush="Transparent" 
+Background="Transparent" 
+HorizontalAlignment="Center"
+
+Width="40" Height="40">
+                            <Image Source="images/plus.png" Width="30" Height="30"/>
+                        </Button>
                     </StackPanel>
                 </Border>
             </Grid>
