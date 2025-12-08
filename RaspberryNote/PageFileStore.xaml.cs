@@ -13,6 +13,8 @@ namespace RaspberryNote
     public partial class PageFileStore : Page, INotifyPropertyChanged
     {
         private const string connectionString = "data source=HONOR_RINAOUKO\\MSSQLSERVER01;initial catalog=RaspberryNote;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
+        private const long MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; 
+
         private ObservableCollection<StoredFile> _files;
         public ObservableCollection<StoredFile> Files
         {
@@ -37,6 +39,7 @@ namespace RaspberryNote
             LoadFiles();
             LoadTasks();
         }
+
         public class TaskItem
         {
             public string Description { get; set; }
@@ -47,6 +50,7 @@ namespace RaspberryNote
                 return $"{Description} ({SourceTable})";
             }
         }
+
         private void InitializeStorage()
         {
             storagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FileStorage");
@@ -55,6 +59,7 @@ namespace RaspberryNote
                 Directory.CreateDirectory(storagePath);
             }
         }
+
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
@@ -69,24 +74,77 @@ namespace RaspberryNote
         }
 
         #region ActionsForClicks
+
+        private Dictionary<string, (string TaskDescription, string SourceTable)> LoadFileLinksFromDatabase()
+        {
+            var links = new Dictionary<string, (string, string)>();
+
+            try
+            {
+                var query = @"
+                    SELECT FileName, TaskDescription, SourceTable 
+                    FROM FileTaskLinks 
+                    ORDER BY CreatedDate DESC";
+
+                using (var connection = new System.Data.SqlClient.SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var fileName = reader["FileName"].ToString();
+                            var taskDescription = reader["TaskDescription"].ToString();
+                            var sourceTable = reader["SourceTable"].ToString();
+
+                            if (!links.ContainsKey(fileName))
+                            {
+                                links[fileName] = (taskDescription, sourceTable);
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine($"Загружено {links.Count} связей из БД");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка загрузки связей: {ex.Message}");
+            }
+
+            return links;
+        }
+
         private void LoadFiles()
         {
             Files = new ObservableCollection<StoredFile>();
 
             if (!Directory.Exists(storagePath)) return;
 
+            var fileLinks = LoadFileLinksFromDatabase();
+
             var fileEntries = Directory.GetFiles(storagePath);
             foreach (var filePath in fileEntries)
             {
                 var fileInfo = new FileInfo(filePath);
+                var fileName = Path.GetFileName(filePath);
+
+                string linkedTaskText = "Не связана";
+                if (fileLinks.TryGetValue(fileName, out var link))
+                {
+                    linkedTaskText = $"{link.TaskDescription} ({link.SourceTable})";
+                }
+
                 var file = new StoredFile(OpenFile, DeleteFile)
                 {
-                    FileName = Path.GetFileName(filePath),
-                    OriginalFileName = Path.GetFileName(filePath),
+                    FileName = fileName,
+                    OriginalFileName = fileName,
                     FilePath = filePath,
                     FileSize = fileInfo.Length,
                     CreatedDate = fileInfo.CreationTime,
-                    LinkedTask = "Не связана"
+                    LinkedTask = linkedTaskText
                 };
 
                 Files.Add(file);
@@ -110,6 +168,31 @@ namespace RaspberryNote
             }
         }
 
+        private void DeleteFileTaskLink(string fileName)
+        {
+            try
+            {
+                var query = "DELETE FROM FileTaskLinks WHERE FileName = @FileName";
+
+                using (var connection = new System.Data.SqlClient.SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@FileName", fileName);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                Console.WriteLine($"Связь удалена для файла: {fileName}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка удаления связи: {ex.Message}");
+            }
+        }
+
         private void DeleteFile(StoredFile file)
         {
             var result = MessageBox.Show($"Удалить файл '{file.FileName}'?",
@@ -122,6 +205,9 @@ namespace RaspberryNote
                 try
                 {
                     File.Delete(file.FilePath);
+
+                    DeleteFileTaskLink(file.FileName);
+
                     Files.Remove(file);
                 }
                 catch (Exception ex)
@@ -131,7 +217,7 @@ namespace RaspberryNote
                 }
             }
         }
-      
+
         private void LoadTasks()
         {
             try
@@ -172,7 +258,6 @@ namespace RaspberryNote
                 if (TasksComboBox != null)
                 {
                     TasksComboBox.ItemsSource = tasks;
-
                     TasksComboBox.DisplayMemberPath = "Description";
                 }
 
@@ -184,10 +269,10 @@ namespace RaspberryNote
                               MessageBoxButton.OK, MessageBoxImage.Error);
 
                 var testTasks = new List<TaskItem>
-        {
-            new TaskItem { Description = "Тестовая задача 1", SourceTable = "TaskFolder1" },
-            new TaskItem { Description = "Тестовая задача 2", SourceTable = "TaskFolder2" }
-        };
+                {
+                    new TaskItem { Description = "Тестовая задача 1", SourceTable = "TaskFolder1" },
+                    new TaskItem { Description = "Тестовая задача 2", SourceTable = "TaskFolder2" }
+                };
                 TasksComboBox.ItemsSource = testTasks;
                 TasksComboBox.DisplayMemberPath = "Description";
             }
@@ -196,6 +281,7 @@ namespace RaspberryNote
         #endregion
 
         #region ClicksWithFiles
+
         private void OpenFileButton_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedFile != null)
@@ -240,13 +326,35 @@ namespace RaspberryNote
             }
         }
 
+        private string FormatFileSize(long bytes)
+        {
+            string[] sizes = { "Б", "КБ", "МБ", "ГБ", "ТБ" };
+            double len = bytes;
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len /= 1024;
+            }
+            return $"{len:0.##} {sizes[order]}";
+        }
+
         private void AddFileButton_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Multiselect = true;
 
+            openFileDialog.Filter = "Все файлы (*.*)|*.*|" +
+                                   "Документы (*.doc;*.docx;*.pdf;*.txt;*.rtf)|*.doc;*.docx;*.pdf;*.txt;*.rtf|" +
+                                   "Изображения (*.jpg;*.jpeg;*.png;*.gif;*.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp|" +
+                                   "Таблицы (*.xls;*.xlsx;*.csv)|*.xls;*.xlsx;*.csv";
+
             if (openFileDialog.ShowDialog() == true)
             {
+                var existingLinks = LoadFileLinksFromDatabase();
+                int successfulCount = 0;
+                int skippedCount = 0;
+
                 foreach (string sourceFilePath in openFileDialog.FileNames)
                 {
                     try
@@ -254,20 +362,60 @@ namespace RaspberryNote
                         string fileName = Path.GetFileName(sourceFilePath);
                         string destFilePath = Path.Combine(storagePath, fileName);
 
+                        var fileInfo = new FileInfo(sourceFilePath);
+                        if (fileInfo.Length > MAX_FILE_SIZE_BYTES)
+                        {
+                            skippedCount++;
+                            string maxSizeFormatted = FormatFileSize(MAX_FILE_SIZE_BYTES);
+                            string fileSizeFormatted = FormatFileSize(fileInfo.Length);
+
+                            MessageBox.Show($"Файл '{fileName}' не был загружен.\n" +
+                                          $"Размер файла: {fileSizeFormatted}\n" +
+                                          $"Максимальный размер: {maxSizeFormatted}\n\n" +
+                                          $"Пожалуйста, выберите файл размером не более {maxSizeFormatted}.",
+                                          "Файл слишком большой",
+                                          MessageBoxButton.OK,
+                                          MessageBoxImage.Warning);
+                            continue;
+                        }
+
+                        if (File.Exists(destFilePath))
+                        {
+                            var overwriteResult = MessageBox.Show($"Файл '{fileName}' уже существует.\n" +
+                                                                "Заменить его?",
+                                                                "Подтверждение замены",
+                                                                MessageBoxButton.YesNo,
+                                                                MessageBoxImage.Question);
+
+                            if (overwriteResult == MessageBoxResult.No)
+                            {
+                                skippedCount++;
+                                continue;
+                            }
+                        }
+
                         File.Copy(sourceFilePath, destFilePath, true);
 
-                        var fileInfo = new FileInfo(destFilePath);
+                        var destFileInfo = new FileInfo(destFilePath);
+
+                        string linkedTaskText = "Не связана";
+                        if (existingLinks.TryGetValue(fileName, out var link))
+                        {
+                            linkedTaskText = $"{link.TaskDescription} ({link.SourceTable})";
+                        }
+
                         var newFile = new StoredFile(OpenFile, DeleteFile)
                         {
                             FileName = fileName,
                             OriginalFileName = fileName,
                             FilePath = destFilePath,
-                            FileSize = fileInfo.Length,
-                            CreatedDate = fileInfo.CreationTime,
-                            LinkedTask = "Не связана"
+                            FileSize = destFileInfo.Length,
+                            CreatedDate = destFileInfo.CreationTime,
+                            LinkedTask = linkedTaskText
                         };
 
                         Files.Add(newFile);
+                        successfulCount++;
                     }
                     catch (Exception ex)
                     {
@@ -276,8 +424,24 @@ namespace RaspberryNote
                     }
                 }
 
-                MessageBox.Show("Файлы добавлены!", "Успех",
-                              MessageBoxButton.OK, MessageBoxImage.Information);
+                string message;
+                if (successfulCount > 0 && skippedCount > 0)
+                {
+                    message = $"Загружено файлов: {successfulCount}\n" +
+                             $"Пропущено: {skippedCount}";
+                }
+                else if (successfulCount > 0)
+                {
+                    message = $"Успешно загружено {successfulCount} файлов!";
+                }
+                else
+                {
+                    message = "Файлы не были загружены.";
+                }
+
+                MessageBox.Show(message, "Результат загрузки",
+                              MessageBoxButton.OK,
+                              successfulCount > 0 ? MessageBoxImage.Information : MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -287,18 +451,21 @@ namespace RaspberryNote
             try
             {
                 var createTableQuery = @"
-            IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='FileTaskLinks' AND xtype='U')
-            CREATE TABLE FileTaskLinks (
-                Id int IDENTITY(1,1) PRIMARY KEY,
-                FileName nvarchar(500) NOT NULL,
-                TaskDescription nvarchar(1000) NOT NULL,
-                SourceTable nvarchar(100) NOT NULL,
-                CreatedDate datetime DEFAULT GETDATE()
-            )";
+                    IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='FileTaskLinks' AND xtype='U')
+                    CREATE TABLE FileTaskLinks (
+                        Id int IDENTITY(1,1) PRIMARY KEY,
+                        FileName nvarchar(500) NOT NULL,
+                        TaskDescription nvarchar(1000) NOT NULL,
+                        SourceTable nvarchar(100) NOT NULL,
+                        CreatedDate datetime DEFAULT GETDATE()
+                    )";
+
+                var deleteQuery = @"
+                    DELETE FROM FileTaskLinks WHERE FileName = @FileName";
 
                 var insertQuery = @"
-            INSERT INTO FileTaskLinks (FileName, TaskDescription, SourceTable) 
-            VALUES (@FileName, @TaskDescription, @SourceTable)";
+                    INSERT INTO FileTaskLinks (FileName, TaskDescription, SourceTable) 
+                    VALUES (@FileName, @TaskDescription, @SourceTable)";
 
                 using (var connection = new System.Data.SqlClient.SqlConnection(connectionString))
                 {
@@ -306,6 +473,12 @@ namespace RaspberryNote
 
                     using (var command = new System.Data.SqlClient.SqlCommand(createTableQuery, connection))
                     {
+                        command.ExecuteNonQuery();
+                    }
+
+                    using (var command = new System.Data.SqlClient.SqlCommand(deleteQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@FileName", fileName);
                         command.ExecuteNonQuery();
                     }
 
@@ -319,11 +492,16 @@ namespace RaspberryNote
                 }
 
                 Console.WriteLine($"Связь сохранена: {fileName} -> {taskDescription}");
+
+                if (SelectedFile != null && SelectedFile.FileName == fileName)
+                {
+                    SelectedFile.LinkedTask = $"{taskDescription} ({sourceTable})";
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка сохранения связи: {ex.Message}");
-      
+                MessageBox.Show($"Ошибка сохранения связи: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -340,8 +518,5 @@ namespace RaspberryNote
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    
-        
-
     }
 }

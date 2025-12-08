@@ -6,11 +6,11 @@
       xmlns:local="clr-namespace:RaspberryNote"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="850"
-      Title="Файловое хранилище">
+      Title="Файловое хранилище" >
 
 
 
-    <Grid Margin="0,10,10,0" Background="#FFEDFA">
+    <Grid Background="#FFEDFA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="*"/>
