@@ -127,19 +127,19 @@
            SelectionChanged="CategoryComboBox_SelectionChanged"/>
 
                 <Button x:Name="btnAdd" Grid.Column="3" Grid.Row="1" Margin="2,0,0,0" Height="30" Content="Добавить" 
-                        Background="#BA487F" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
-                        Click="AddButton_Click" 
-                        
-                        />
+         Background="#BA487F" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+         Click="AddButton_Click" 
+         
+         />
 
                 <Button x:Name="btnEdit" Grid.Column="4" Grid.Row="1"  Margin="2,0,0,0" Height="30"  Content="Изменить" 
-                        Background="#FF9575CD" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
-                        Click="EditButton_Click"
-                        />
+         Background="#e36fa7" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+         Click="EditButton_Click"
+         />
 
                 <Button x:Name="btnDelete" Grid.Column="5" Grid.Row="1"  Margin="2,0,0,0" Height="30"  Content="Удалить" 
-                        Background="#FF5252" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
-                        Click="DeleteButton_Click"/>
+         Background="#eb94be" Foreground="White" FontFamily="Cascadia Code" FontSize="11"
+         Click="DeleteButton_Click"/>
             </Grid>
         </Border>
 
