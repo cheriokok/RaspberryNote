@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaspberryNote"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="850"
+        Title="Главное окно" Height="450" Width="850"
         ResizeMode="NoResize">
     <Grid Background="#FFEDFA">
         <Grid.RowDefinitions>

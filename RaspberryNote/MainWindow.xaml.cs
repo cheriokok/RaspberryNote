@@ -34,7 +34,7 @@ namespace RaspberryNote
         
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Проект был выполнен: Дариной Сан  \n Группа: 3pk2  \n Eyaho eyaho eyaho eyaho\r\nEyaho eyaho eyaho eyaho \n Приходите в АСМР салон 'КОМА' \n  Подпись от арины кирш 3пк2", "ТКтктктко",
+            MessageBox.Show("Курсовой проект  \nПриложение задач и планирования  \nВыполнено: Яшина Дарина, 3пк2", "Информация",
                                 MessageBoxButton.OK, MessageBoxImage.Information);
 
         }

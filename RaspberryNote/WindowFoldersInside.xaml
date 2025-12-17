@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaspberryNote"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WindowFoldersInside" Height="450" Width="800"
+        Title="Папка" Height="450" Width="800"
         ResizeMode="NoResize">
     <Grid>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>

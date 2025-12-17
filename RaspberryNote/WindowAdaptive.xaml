@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaspberryNote"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WindowAdaptive" Height="450" Width="800"
+        Title="Просмотр" Height="450" Width="800"
         ResizeMode="NoResize">
     <Grid>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
