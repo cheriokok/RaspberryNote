@@ -21,7 +21,6 @@ namespace RaspberryNote
     {
         private const string connectionString = "data source=HONOR_RINAOUKO\\MSSQLSERVER01;initial catalog=RaspberryNote;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
 
-        // Переменные для хранения выбранной записи
         private DataGrid selectedDataGrid;
         private DataRowView selectedRow;
         private string selectedDayTableName;
@@ -40,7 +39,6 @@ namespace RaspberryNote
             currentWindow?.Close();
         }
 
-        // Обработчик выбора строки в DataGrid
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is DataGrid dataGrid && dataGrid.SelectedItem != null)
@@ -48,12 +46,10 @@ namespace RaspberryNote
                 selectedDataGrid = dataGrid;
                 selectedRow = dataGrid.SelectedItem as DataRowView;
 
-                // Определяем название таблицы дня по имени DataGrid
                 selectedDayTableName = dataGrid.Name.Replace("Grid", "");
             }
         }
 
-        // Обработчик кнопки удаления
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedRow == null || selectedDataGrid == null)
@@ -73,7 +69,6 @@ namespace RaspberryNote
                 return;
             }
 
-            // Подтверждение удаления
             MessageBoxResult result = MessageBox.Show(
                 $"Вы уверены, что хотите удалить запись:\n\"{description}\"?",
                 "Подтверждение удаления",
@@ -87,7 +82,6 @@ namespace RaspberryNote
                     DeleteEvent(selectedDayTableName, description, category);
                     LoadAllFolders();
 
-                    // Сбрасываем выделение
                     selectedDataGrid.SelectedItem = null;
                     selectedRow = null;
                     selectedDataGrid = null;
@@ -103,7 +97,6 @@ namespace RaspberryNote
             }
         }
 
-        // Метод для удаления события из базы данных
         private void DeleteEvent(string dayTableName, string description, string category)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
